@@ -1,0 +1,26 @@
+
+import UserController from '../controller/user.controller';
+
+const User = new UserController();
+
+
+
+
+export default defineEventHandler(async (event) => {
+    try {
+        const user = await User.register(event)
+        if(user && user.additionalContext && 'user' in user.additionalContext){
+            await setUserSession(event, {
+                user:{
+                    id: user.additionalContext.user.id,
+                    email: user.additionalContext.user.email,
+                    loggedInAt: new Date()
+                }
+            })
+            return user
+        }
+        return user
+    } catch (error) {
+        console.log(error)
+    }
+})

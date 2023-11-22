@@ -1,0 +1,38 @@
+{
+  "name": "nuxt-app",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "devDependencies": {
+    "@formkit/auto-animate": "^0.8.1",
+    "@nuxt/devtools": "latest",
+    "@nuxt/image": "^1.0.0",
+    "@nuxtjs/color-mode": "^3.3.2",
+    "@nuxtjs/device": "^3.1.1",
+    "@nuxtjs/i18n": "^8.0.0-rc.5",
+    "@nuxtjs/tailwindcss": "^6.9.5",
+    "@types/bcrypt": "^5.0.2",
+    "@types/jsonwebtoken": "^9.0.5",
+    "@vite-pwa/nuxt": "^0.2.3",
+    "autoprefixer": "^10.4.16",
+    "dayjs-nuxt": "^2.1.9",
+    "nuxt": "^3.8.1",
+    "nuxt-auth-utils": "^0.0.7",
+    "nuxt-mongoose": "^1.0.3",
+    "postcss": "^8.4.31",
+    "tailwindcss": "^3.3.5",
+    "vue": "^3.3.8",
+    "vue-router": "^4.2.5"
+  },
+  "dependencies": {
+    "axios": "^1.6.2",
+    "bcrypt": "^5.1.1",
+    "jsonwebtoken": "^9.0.2"
+  }
+}
