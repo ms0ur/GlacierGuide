@@ -58,7 +58,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import axios from 'axios';
-const [parent] = useAutoAnimate()
 
 const email = ref('');
 const password = ref('');

@@ -17,8 +17,6 @@ export default defineNuxtConfig({
   css: ['~/public/css/global.css'],
   modules: [
     "@nuxtjs/tailwindcss",
-    ["@nuxtjs/i18n", {}],
-    '@formkit/auto-animate/nuxt',
     "@nuxt/image",
     ["@nuxtjs/color-mode", {
       classSuffix: '',
