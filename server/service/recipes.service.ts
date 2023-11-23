@@ -44,5 +44,17 @@ export class RecipesService {
         }
     }
 
-    
+    getRecipesByName(name: string, limit: number): any{
+        try {
+            const result = RecipesSchema.find({name: new RegExp(name, 'i')}).limit(limit || 10)
+            return result
+        } catch (error) {
+            console.log(error)
+            return null
+        }
+    }
+
+
+
+
 }
