@@ -4,9 +4,9 @@ import RecipesSchema from '../models/recipes/recipes.schema';
 
 
 export class RecipesService {
-    addRecipe(name: string, description: string, ingredients: Schema.Types.ObjectId[], steps: string[], user: Schema.Types.ObjectId){
+    addRecipe(name: string, description: string, ingredients: Schema.Types.ObjectId[], steps: string[], user: Schema.Types.ObjectId, publicRecipe: boolean){
         try {
-            const result = RecipesSchema.create({name: name, description: description, ingredients: ingredients, steps: steps, user: user})
+            const result = RecipesSchema.create({name: name, description: description, ingredients: ingredients, steps: steps, user: user, public: publicRecipe})
             return result
         } catch (error) {
             console.log(error)
@@ -53,6 +53,8 @@ export class RecipesService {
             return null
         }
     }
+
+
 
 
 

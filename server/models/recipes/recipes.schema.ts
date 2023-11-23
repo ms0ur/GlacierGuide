@@ -6,7 +6,8 @@ interface Recipes {
     description: string,
     ingredients: Schema.Types.ObjectId[],
     steps: string[],
-    user: Schema.Types.ObjectId
+    user: Schema.Types.ObjectId,
+    public: boolean
 }
 
 export default defineMongooseModel<Recipes>('Recipes', {
@@ -20,5 +21,6 @@ export default defineMongooseModel<Recipes>('Recipes', {
     user: {
         type: Schema.Types.ObjectId,
         ref: 'User',
-    }
+    },
+    public: Boolean
 })
