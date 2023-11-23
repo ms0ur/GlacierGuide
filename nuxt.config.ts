@@ -8,11 +8,11 @@ export default defineNuxtConfig({
       enabled: true
     }
   },
-  postcss: {
-    plugins: {
-      tailwindcss: {},
-      autoprefixer: {},
-    },
+    postcss: {
+      plugins: {
+        tailwindcss: {},
+        autoprefixer: {},
+      },
   },
   css: ['~/public/css/global.css'],
   modules: [
@@ -32,6 +32,7 @@ export default defineNuxtConfig({
     ["nuxt-auth-utils", {
       
     }],
+    '@formkit/auto-animate/nuxt',
     ["@vite-pwa/nuxt", {
       manifest:{
         name: "Nuxt 3 Template",

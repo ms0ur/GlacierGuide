@@ -1,57 +1,55 @@
 <template>
-  <div class="bg-white flex flex-col px-5 max-md:mx-0">
-    <div class="flex w-[744px] max-w-full flex-col items-stretch ml-24 mt-60 mb-52 max-md:my-10 max-md:mx-0">
-      <h1 class="text-black text-4xl font-header leading-[51px] uppercase max-md:max-w-full">
-        Создайте новый аккаунт
+  <div class="bg-white flex flex-col items-center px-5">
+    <section class="flex w-full max-w-[1060px] flex-col items-stretch mt-60 mb-64 max-md:max-w-full max-md:my-10">
+      <h1 class="text-black text-3xl font-semibold leading-10 whitespace-nowrap max-md:max-w-full">
+        Введите свои данные,
       </h1>
-      <div class="mt-14 max-md:max-w-full max-md:mt-10 max-md:mx-0">
-        <div class="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
-          <div class=" max-md:hidden flex flex-col items-stretch w-3/12 max-md:w-full max-md:mx-0">
-            <div class="shadow-sm bg-stone-100 flex flex-col items-center w-full mx-auto rounded-3xl max-md:mt-6">
-              <NuxtImg
-                loading="lazy"
-                src="/svgs/registerImage.svg"
-                class="aspect-square object-contain object-center w-[180px] overflow-hidden"
-              />
-            </div>
+      <div class="flex flex-col mt-2.5 pl-16 max-md:max-w-full max-md:pl-5">
+        <div class="flex w-[544px] max-w-full justify-between gap-5 max-md:flex-wrap">
+          <NuxtImg
+            loading="lazy"
+            src="/svgs/login2Image.svg"
+            class="aspect-[0.95] max-md:hidden object-contain object-center w-10 fill-purple-500 overflow-hidden shrink-0 max-w-full"
+            alt="Image"
+          />
+          <div class="self-stretch flex grow basis-[0%] flex-col items-stretch max-md:max-w-full">
+            <h2 class="text-black text-center text-3xl font-semibold leading-10 max-md:max-w-full">
+              чтобы создать новый аккаунт
+            </h2>
+            <p class="text-black text-sm font-medium leading-4 mt-4 max-md:max-w-full">
+              или войдите, если у Вас есть аккаунт
+            </p>
           </div>
-          <div class="flex flex-col items-stretch w-9/12 ml-5 max-md:w-full max-md:mx-0">
-            <div class="shadow-sm bg-stone-100 flex grow flex-col w-full mx-auto pl-12 pr-12 pt-8 pb-11 rounded-3xl max-md:max-w-full max-md:mt-6 max-md:mx-0">
-              <div class="text-black text-xl font-medium leading-6 self-stretch whitespace-nowrap max-md:max-w-full">
-                Логин
-              </div>
-              <input v-model="email" placeholder="mail@mail.ru" class="text-black text-sm font-medium leading-4 whitespace-nowrap border border-[color:var(--foundation-violet-normal,#A461DB)] self-stretch mt-3 px-5 py-4 rounded-3xl border-solid max-md:max-w-full max-md:pl-2">
-              <div class="text-black text-xl font-medium leading-6 self-stretch whitespace-nowrap mt-6 max-md:max-w-full">
-                Пароль
-              </div>
-              <input v-model="password" placeholder="••••••••" class="text-black text-sm font-medium leading-4 whitespace-nowrap border border-[color:var(--foundation-violet-normal,#A461DB)] self-stretch mt-3 px-5 py-4 rounded-3xl border-solid max-md:max-w-full max-md:pl-2">
-              <div v-if="errorMessage" class="bg-red-500 mt-2 text-white px-6 py-4 border-0 rounded-3xl relative mb-4">
-                <span class="text-xl inline-block mr-5 align-middle">
-                  <i class="fas fa-bell" />
-                </span>
-                <span class="inline-block align-middle mr-8">
-                  {{ errorMessage }}
-                </span>
-             </div>
-              <button @click="submitForm" class="text-white text-sm font-medium leading-4 whitespace-nowrap justify-center items-center shadow-sm bg-red-400 w-[164px] max-w-full mt-32 px-5 py-3.5 rounded-3xl self-end max-md:mt-10 max-md:mx-0">
-                Создать аккаунт
-              </button>
+        </div>
+        <div class="shadow-sm bg-zinc-50 flex w-[925px] max-w-full justify-between gap-5 mt-16 pl-11 pr-11 pt-8 pb-12 rounded-3xl self-end max-md:flex-wrap max-md:mt-10 max-md:px-5">
+          <div class="flex grow basis-[0%] flex-col items-stretch">
+            <label for="login" class="text-black text-xl font-medium leading-6 whitespace-nowrap">
+              Логин
+            </label>
+            <input v-model="email" placeholder="mail@mail.ru" class=" text-sm font-medium leading-4 whitespace-nowrap border border-[color:var(--foundation-violet-normal,#A461DB)] mt-3 px-5 py-4 rounded-3xl border-solid max-md:pl-2" />
+            <label for="password" class="text-black text-xl font-medium leading-6 whitespace-nowrap mt-6">
+              Пароль
+            </label>
+            <input v-model="password" placeholder="••••••••" class=" text-sm font-medium leading-4 whitespace-nowrap border border-[color:var(--foundation-violet-normal,#A461DB)] mt-3 px-5 py-4 rounded-3xl border-solid max-md:pl-2" />
+          </div>
+          <div v-auto-animate class="flex grow basis-0 flex-col mt-20 self-end items-end max-md:mt-10">
+            <NuxtLink v-auto-animate to="/login" class="text-black text-sm font-medium leading-4 whitespace-nowrap justify-center items-center border w-[90px] max-w-full px-5 py-3.5 rounded-3xl border-solid border-black">
+              Войти 
+            </NuxtLink>
+            <button v-auto-animate @click="submitForm" class="text-white text-sm font-medium leading-4 whitespace-nowrap justify-center items-center shadow-sm bg-red-400 self-end mt-5 px-5 py-3.5 rounded-3xl">
+              Создать аккаунт
+            </button>
+            <div v-auto-animate v-if="errorMessage" class="text-white bg-red-500 p-3 rounded-xl text-center mt-2">
+              {{ errorMessage }}
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   </div>
 </template>
 <style scoped>
-@font-face {
-    font-family: "Actay";
-    src: local("Actay"), url(public/fonts/ActayWide-Bold.otf) format("opentype");
-    }
 
-    .font-header {
-    font-family: "Actay";
-    }
 </style>
 
 
@@ -65,6 +63,14 @@ const errorMessage = ref('');
 
 const submitForm = async (event : any) => {
   event.preventDefault();
+
+  if(email.value == '' || password.value == '') {
+    errorMessage.value = 'Не заполнены необходимые поля';
+    setTimeout(() => {
+      errorMessage.value = '';
+    }, 5000);
+    return;
+  }
 
   try {
     const response = await axios.post('/api/register', {

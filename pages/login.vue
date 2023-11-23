@@ -1,63 +1,54 @@
 <template>
-  <main class="bg-white flex flex-col px-20 max-md:px-5">
-  <h1 class="text-black text-4xl font-header leading-[51px] uppercase ml-10 mt-60 max-md:mx-0 max-md:max-w-full max-md:mt-10">
-    войдите в аккаунт
-  </h1>
-  <section class="w-[744px] max-w-full ml-10 mt-14 mb-52 max-md:mx-0 max-md:my-10">
-    <div class="gap-5 flex max-md:flex-col max-md:mx-0 max-md:items-stretch max-md:gap-0">
-      <div class="flex flex-col items-stretch w-3/12 opacity-0 max-md:hidden max-md:w-full max-md:ml-0">
-        <div class="bg-stone-200 flex flex-col w-full mx-auto pt-12 pb-1 px-4 rounded-3xl max-md:mt-6">
+  <div class="bg-white flex flex-col items-center px-5">
+    <section class="flex w-full max-w-[1060px] flex-col items-stretch mt-60 mb-64 max-md:max-w-full max-md:my-10">
+      <h1 class="text-black text-3xl font-semibold leading-10 whitespace-nowrap max-md:max-w-full">
+        Введите свои данные,
+      </h1>
+      <div class="flex flex-col mt-2.5 pl-16 max-md:max-w-full max-md:pl-5">
+        <div class="flex w-[544px] max-w-full justify-between gap-5 max-md:flex-wrap">
           <NuxtImg
             loading="lazy"
-            src="/svgs/loginImage.svg"
-            class="aspect-[0.74] object-contain object-center w-[95px] fill-blue-400 overflow-hidden max-w-full"
-            alt="Logo"
+            src="/svgs/login2Image.svg"
+            class="aspect-[0.95] max-md:hidden object-contain object-center w-10 fill-purple-500 overflow-hidden shrink-0 max-w-full"
+            alt="Image"
           />
+          <div class="self-stretch flex grow basis-[0%] flex-col items-stretch max-md:max-w-full">
+            <h2 class="text-black text-3xl font-semibold leading-10 max-md:max-w-full">
+              чтобы войти в аккаунт
+            </h2>
+            <p class="text-black text-sm font-medium leading-4 mt-4 max-md:max-w-full">
+              или зарегистрируйтесь, если Вы не делали этого раньше
+            </p>
+          </div>
         </div>
-      </div>
-      <div class="flex flex-col items-stretch w-9/12 ml-5 max-md:w-full max-md:mx-0 ">
-        <div class="bg-stone-100 flex grow flex-col w-full mx-auto pl-11 pr-8 pt-8 pb-11 rounded-3xl max-md:max-w-full max-md:mt-6 max-md:px-5">
-          <div class="text-black text-xl font-medium leading-6 self-stretch whitespace-nowrap max-md:max-w-full">
-            Логин
+        <div class="shadow-sm bg-zinc-50 flex w-[925px] max-w-full justify-between gap-5 mt-16 pl-11 pr-11 pt-8 pb-12 rounded-3xl self-end max-md:flex-wrap max-md:mt-10 max-md:px-5">
+          <div class="flex grow basis-[0%] flex-col items-stretch">
+            <label for="login" class="text-black text-xl font-medium leading-6 whitespace-nowrap">
+              Логин
+            </label>
+            <input v-model="login" placeholder="mail@mail.ru" class=" text-sm font-medium leading-4 whitespace-nowrap border border-[color:var(--foundation-violet-normal,#A461DB)] mt-3 px-5 py-4 rounded-3xl border-solid max-md:pl-2" />
+            <label for="password" class="text-black text-xl font-medium leading-6 whitespace-nowrap mt-6">
+              Пароль
+            </label>
+            <input v-model="password" placeholder="••••••••" class=" text-sm font-medium leading-4 whitespace-nowrap border border-[color:var(--foundation-violet-normal,#A461DB)] mt-3 px-5 py-4 rounded-3xl border-solid max-md:pl-2" />
           </div>
-          <input v-model="login" placeholder="mail@mail.ru" class="text-black text-sm font-medium leading-4 whitespace-nowrap border border-[color:var(--foundation-violet-normal,#A461DB)] self-stretch mt-3 px-5 py-4 rounded-3xl border-solid max-md:max-w-full max-md:pl-2">
-            
-          <div class="text-black text-xl font-medium leading-6 self-stretch whitespace-nowrap mt-6 max-md:max-w-full">
-            Пароль
-          </div>
-          <input v-model="password" placeholder="••••••••" class="text-black text-sm font-medium leading-4 whitespace-nowrap border border-[color:var(--foundation-violet-normal,#A461DB)] self-stretch mt-3 px-5 py-4 rounded-3xl border-solid max-md:max-w-full max-md:pl-2">
-
-          <div v-if="errorMessage" class="bg-red-500 text-white px-6 py-4 border-0 rounded relative mb-4">
-            <span class="text-xl inline-block mr-5 align-middle">
-              <i class="fas fa-bell" />
-            </span>
-            <span class="inline-block align-middle mr-8">
-              {{ errorMessage }}
-            </span>
-            <button class="absolute bg-transparent text-2xl top-0 right-0 mt-4 mr-6 outline-none focus:outline-none">
-              <span>×</span>
+          <div v-auto-animate class="flex grow basis-0 flex-col mt-20 self-end items-end max-md:mt-10">
+            <NuxtLink to="/register" v-auto-animate class="text-black text-sm font-medium leading-4 whitespace-nowrap justify-center items-center border max-w-full px-5 py-3.5 rounded-3xl border-solid border-black">
+              Создать аккаунт
+            </NuxtLink>
+            <button v-auto-animate @click="submitForm" class="text-white text-sm font-medium leading-4 whitespace-nowrap justify-center items-center shadow-sm bg-red-400 self-end mt-5 px-5 py-3.5 rounded-3xl">
+              Войти
             </button>
+            <div v-auto-animate v-if="errorMessage" class="text-white bg-red-500 p-3 rounded-xl text-center mt-2">
+              {{ errorMessage }}
+            </div>
           </div>
-
-          <button @click="submitForm" class="text-white text-sm font-medium leading-4 whitespace-nowrap justify-center items-center bg-red-400 w-[138px] max-w-full mt-32 px-5 py-3.5 rounded-3xl self-end max-md:mt-10">
-            Войти
-          </button>
         </div>
       </div>
-    </div>
-  </section>
-</main>
+    </section>
+  </div>
 </template>
-<style scoped>
-@font-face {
-    font-family: "Actay";
-    src: local("Actay"), url(public/fonts/ActayWide-Bold.otf) format("opentype");
-    }
 
-    .font-header {
-    font-family: "Actay";
-    }
-</style>
 
 <script setup lang="ts">
 import { ref } from 'vue';
@@ -71,6 +62,14 @@ const errorMessage = ref('');
 const submitForm = async (event : any) => {
   event.preventDefault();
 
+  if(login.value == '' || password.value == '') {
+    errorMessage.value = 'Не заполнены необходимые поля';
+    setTimeout(() => {
+      errorMessage.value = '';
+    }, 5000);
+    return;
+  }
+
   try {
     const response = await axios.post('/api/login', {
       email: login.value,
@@ -78,6 +77,10 @@ const submitForm = async (event : any) => {
     }).then((response) => {
       if(response.data.status == false){
         errorMessage.value = response.data.errorName.ru;
+        
+        setTimeout(() => {
+          errorMessage.value = '';
+        }, 5000);
       } else if(response.data.status == true) {
         window.location.href = "/";
       }
