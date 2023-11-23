@@ -8,6 +8,11 @@ export default defineNuxtConfig({
       enabled: true
     }
   },
+  nitro: {
+    firebase: {
+      gen: 2
+    }
+  },
     postcss: {
       plugins: {
         tailwindcss: {},
@@ -35,9 +40,9 @@ export default defineNuxtConfig({
     '@formkit/auto-animate/nuxt',
     ["@vite-pwa/nuxt", {
       manifest:{
-        name: "Nuxt 3 Template",
-        short_name: "Nuxt 3 Template",
-        description: "Nuxt 3 Template",
+        name: "GlacierGuide",
+        short_name: "GlacierGuide",
+        description: "Приложение сайта GlacierGuide",
         theme_color: "#ffffff",
         icons: [
           {

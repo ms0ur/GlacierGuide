@@ -64,7 +64,7 @@ export default class SuppliesService {
         }
     }
 
-    addType(name: string, category: Schema.Types.ObjectId): any{
+    addType(name: string, category: string): any{
         try {
             const result = suppliesTypesSchema.create({name: name, category: category})
             return result
@@ -96,9 +96,9 @@ export default class SuppliesService {
      * @param {string} name - The name to search for.
      * @return {any} The result of the search.
      */
-    searchTypesByName(name: string, limit: number): any{
+    searchTypesByName(name: string, category: string, limit: number): any{
         try {
-            const result = suppliesTypesSchema.find({name: new RegExp(name, 'i')}).limit(limit)
+            const result = suppliesTypesSchema.find({name: new RegExp(name, 'i'), category: category}).limit(limit)
             return result
         } catch (error) {
             console.log(error)
@@ -140,6 +140,7 @@ addSupply(
             type: type,
             user: user
         };
+        console.log(supply);
         const result = suppliesSchema.create(supply);
         return result;
     } catch (error) {

@@ -1,75 +1,27 @@
-# Nuxt 3 Minimal Starter
+# GlacierGuide
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Проект, который поможет людям решить проблему с запасами продуктов вполюсе холода
 
-## Setup
+## Стек, технологии и основные пакеты
 
-Make sure to install the dependencies:
+- NodeJS
+- Nuxt 3 (Vue.JS 3)
+- TailwindCSS
+- MongoDB(mongoose)
+- VitePWA
 
-```bash
-# npm
-npm install
+## Планируемый функционал
 
-# pnpm
-pnpm install
+- Учет продуктов(добавление/изменение/удаление)
+- Создание рецептов и возможность делиться ими с другими пользователями
+- Создание списков покупок, быстрое создание списков покупок из рецептов
+- Предложение рецептов на основе имеющихся продуктов
 
-# yarn
-yarn install
+## Сборка и запуск (Только с Linux или через Git Bash)
 
-# bun
-bun install
-```
+1. Скопируйте репозиторий
+2. Выполните команду `npm i`
+3. Выполните команду `npm run build`
+4. Выполните команду `NUXT_PUBLIC_MONGODB_URI=<mongoconnectionURI> NUXT_SESSION_PASSWORD=<passwordMoreThan32characters> node .output/server/index.mjs`
+5. Приложение всегда стартует на порту 3000, в будущем планируется добавить возможность менять порт
 
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.

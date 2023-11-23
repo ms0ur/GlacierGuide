@@ -11,11 +11,14 @@ export default defineEventHandler(async (event) => {
         const user = await User.register(event)
         if(user && user.additionalContext && 'user' in user.additionalContext){
             await setUserSession(event, {
-                user:{
+                user: {
                     id: user.additionalContext.user.id,
                     email: user.additionalContext.user.email,
                     loggedInAt: new Date()
-                }
+                },
+                id: user.additionalContext.user.id,
+                email: user.additionalContext.user.email,
+                loggedInAt: new Date()
             })
             return user
         }
