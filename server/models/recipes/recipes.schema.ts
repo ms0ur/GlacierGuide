@@ -5,12 +5,20 @@ interface Recipes {
     name: string,
     description: string,
     ingredients: Schema.Types.ObjectId[],
+    steps: string[],
     user: Schema.Types.ObjectId
 }
 
-export const recipesSchema = defineMongooseModel<Recipes>('Recipes', {
+export default defineMongooseModel<Recipes>('Recipes', {
     name: String,
     description: String,
-    ingredients: [Schema.Types.ObjectId],
-    user: Schema.Types.ObjectId
+    ingredients: {
+        type: [Schema.Types.ObjectId],
+        ref: 'SuppliesTypes',
+    },
+    steps: [String],
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+    }
 })
