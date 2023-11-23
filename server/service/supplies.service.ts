@@ -1,7 +1,7 @@
 import { Schema } from "mongoose";
-import suppliesCategoriesSchema from "../models/suppliesCategories.schema";
-import suppliesSchema from "../models/supplies.schema";
-import suppliesTypesSchema from "../models/suppliesTypes.schema";
+import suppliesCategoriesSchema from "../models/supplies/suppliesCategories.schema";
+import suppliesSchema from "../models/supplies/supplies.schema";
+import suppliesTypesSchema from "../models/supplies/suppliesTypes.schema";
 
 
 export default class SuppliesService {
