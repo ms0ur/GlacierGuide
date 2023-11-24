@@ -73,7 +73,7 @@ const dayjs = useDayjs();
 dayjs.locale('ru');
 
 
-    const supplyForm = ref({
+  const supplyForm = ref({
     name: '',
     quantity: '',
     measurement: '',
@@ -123,7 +123,7 @@ function typRequest(){
 
 
 function finalSend(){
-    console.log(new Date(supplyForm.value.expiryDate), supplyForm.value.expiryDate)
+    if(!supplyForm.value.name || !supplyForm.value.quantity || !supplyForm.value.measurement || !supplyForm.value.expiryDate || !supplyForm.value.category || !supplyForm.value.type) return
     const body = {
         typel: 'supply',
         name: supplyForm.value.name,
@@ -133,6 +133,16 @@ function finalSend(){
         expiryDate: new Date(supplyForm.value.expiryDate),
         category: categoryID.value,
         type: supplyForm.value.type
+    }
+    supplyForm.value = {
+        name: '',
+        quantity: '',
+        measurement: '',
+        date: '',
+        expiryDate: '',
+        category: '',
+        type: '',
+        user: ''
     }
 
     axios.post('/api/supplies/add', body).then((response) => {

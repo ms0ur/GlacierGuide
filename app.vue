@@ -4,9 +4,6 @@
     <NavbarComponent />
   </nav>
   <NuxtPage />
-  <footer>
-    <FooterMainComponent :class="{ 'hidden' : $route.name == 'login' || $route.name == 'register' }" />
-  </footer>
 </template>
 <script setup lang="ts">
 const { loggedIn, user, session, clear } = useUserSession()

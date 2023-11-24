@@ -3,24 +3,31 @@ const supplies = new SuppliesService()
 
 export default defineEventHandler(async (event) => {
     try {
+
+        // Get the query parameters
         const query = getQuery(event)
-        const option = Number(query.option)
-        console.log(option)
-        if (!option) return null
-        if (option == 0) {
-            const type = query.type
-            if (!type) return null
-            const result = await supplies.getCategoriesByType(Number(type), Number(query.limit) || 10)
+        const selectedOption = Number(query.option)
+
+        // Handle the selected option
+        if (!selectedOption) return null
+
+        if (selectedOption === 0) {
+            // Get categories by type
+            const categoryType = query.type
+            if (!categoryType) return null
+            const result = await supplies.getCategoriesByType(Number(categoryType), Number(query.limit) || 10)
             return result
-        } else if (option == 1) {
-            const name = query.name
-            if (!name) return null
-            const result = await supplies.searchCategoriesByName(String(name), Number(query.limit) || 10)
+        } else if (selectedOption === 1) {
+            // Search categories by name
+            const categoryName = query.name
+            if (!categoryName) return null
+            const result = await supplies.searchCategoriesByName(String(categoryName), Number(query.limit) || 10)
             return result
         } else {
-            const id = query.id
-            if (!id) return null
-            const result = await supplies.getCategorieById(String(id))
+            // Get category by ID
+            const categoryId = query.id
+            if (!categoryId) return null
+            const result = await supplies.getCategorieById(String(categoryId))
             return result
         }
     } catch (error) {

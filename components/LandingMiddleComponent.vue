@@ -2,13 +2,12 @@
     <div class="flex flex-col">
       <div class="flex max-w-full gap-4 px-5 max-md:flex-wrap">
         <h1 class="text-black text-3xl font-semibold leading-10 grow shrink basis-auto mt-6 max-md:max-w-full">
-          Это Ваш список продуктов
+          Это <span class="text-[#5FA8DC]">Ваш</span> будущий список продуктов
         </h1>
-        <img
+        <NuxtImg
           loading="lazy"
-          src="https://cdn.builder.io/api/v1/image/assets/TEMP/5d22b055-83c7-470c-82ea-b6bf21b5f8f7?apiKey=c03f079cc2ee4fd991733212d5b28bc9&"
+          src="https://cdn.builder.io/api/v1/image/assets/TEMP/c1514925-8168-4e0a-8059-c0036e6ed655?apiKey=c03f079cc2ee4fd991733212d5b28bc9&"
           class="aspect-[0.97] object-contain object-center w-[29px] fill-blue-400 overflow-hidden shrink-0 max-w-full self-start"
-          alt=""
         />
       </div>
       <main class="self-stretch w-full mt-5 max-md:max-w-full">
@@ -16,7 +15,7 @@
           <div class="flex flex-col items-stretch w-[69%] max-md:w-full max-md:ml-0">
             <div class="bg-zinc-100 flex grow flex-col items-stretch w-full mx-auto pl-7 pr-7 py-6 rounded-3xl max-md:max-w-full max-md:mt-10 max-md:px-5">
               <div class="text-black text-sm font-medium leading-4 whitespace-nowrap bg-stone-200 px-5 py-6 rounded-3xl max-md:max-w-full max-md:pl-2.5">
-                <SupplieComponent />
+                Продукт такой-то
               </div>
               <div class="text-black text-sm font-medium leading-4 whitespace-nowrap bg-stone-200 mt-5 px-5 py-6 rounded-3xl max-md:max-w-full max-md:pl-2.5">
                 Продукт такой-то

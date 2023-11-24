@@ -9,7 +9,7 @@
               class="aspect-[0.95] object-contain object-center w-10 fill-purple-500 overflow-hidden max-w-full"
             />
             <div class="text-black text-3xl font-semibold leading-10 self-stretch mt-10">
-              Приветствую, Иван
+              Приветствую, {{ session.user.name }}
             </div>
             <div class="shadow-sm bg-black self-stretch flex flex-col items-stretch mt-14 pt-12 rounded-3xl max-md:mt-10">
               <NuxtImg
@@ -32,13 +32,27 @@
             </div>
           </div>
         </div>
-        <div class="flex flex-col items-stretch w-[26%] ml-5 max-md:w-full max-md:ml-0">
-            <div class="w-80 h-96 bg-purple-800 rounded-2xl shadow flex-col justify-end items-center inline-flex">
-                <img class="w-80 h-96 rounded-2xl self-center" src="https://via.placeholder.com/306x531" />
+        <div class="flex flex-row max-md:items-center items-end justify-center w-[26%] ml-5 max-md:w-full max-md:ml-0">
+            <div class="w-80 h-96  rounded-2xl shadow flex-col justify-end items-center bgImage inline-flex" >
+
             </div>
         </div>
       </div>
     </div>
   </template>
 
-  <script setup lang="ts"></script>
+  <style scoped>
+
+
+  .bgImage{
+    background-image: url('@/svgs/mountain.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+  
+  </style>
+
+  <script setup lang="ts">
+  const { loggedIn, user, session, clear } = useUserSession()
+</script>

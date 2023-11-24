@@ -6,7 +6,7 @@ interface Supplies{
     quantity: number,
     measurement: number, // 0-гр, 1-литры, 2-штуки, 3-др
     date: Date,
-    dateExpiry: Date,
+    expiryDate: Date,
     category: Schema.Types.ObjectId,
     type: Schema.Types.ObjectId,
     user: Schema.Types.ObjectId
@@ -27,7 +27,7 @@ export default defineMongooseModel<Supplies>('Supplies',{
     date: {
         type: Date
     },
-    dateExpiry: {
+    expiryDate: {
         type: Date
     },
     category: {

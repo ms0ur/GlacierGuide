@@ -27,10 +27,14 @@
               Логин
             </label>
             <input v-model="email" placeholder="mail@mail.ru" class=" text-sm font-medium leading-4 whitespace-nowrap border border-[color:var(--foundation-violet-normal,#A461DB)] mt-3 px-5 py-4 rounded-3xl border-solid max-md:pl-2" />
+            <label for="name" class="text-black text-xl font-medium leading-6 mt-6 whitespace-nowrap">
+              Имя
+            </label>
+            <input v-model="name" placeholder="Иван" class=" text-sm font-medium leading-4 whitespace-nowrap border border-[color:var(--foundation-violet-normal,#A461DB)] mt-3 px-5 py-4 rounded-3xl border-solid max-md:pl-2" />
             <label for="password" class="text-black text-xl font-medium leading-6 whitespace-nowrap mt-6">
               Пароль
             </label>
-            <input v-model="password" placeholder="••••••••" class=" text-sm font-medium leading-4 whitespace-nowrap border border-[color:var(--foundation-violet-normal,#A461DB)] mt-3 px-5 py-4 rounded-3xl border-solid max-md:pl-2" />
+            <input v-model="password" type="password" placeholder="••••••••" class=" text-sm font-medium leading-4 whitespace-nowrap border border-[color:var(--foundation-violet-normal,#A461DB)] mt-3 px-5 py-4 rounded-3xl border-solid max-md:pl-2" />
           </div>
           <div v-auto-animate class="flex grow basis-0 flex-col mt-20 self-end items-end max-md:mt-10">
             <NuxtLink v-auto-animate to="/login" class="text-black text-sm font-medium leading-4 whitespace-nowrap justify-center items-center border w-[90px] max-w-full px-5 py-3.5 rounded-3xl border-solid border-black">
@@ -58,13 +62,14 @@ import { ref } from 'vue';
 import axios from 'axios';
 
 const email = ref('');
+const name = ref('');
 const password = ref('');
 const errorMessage = ref('');
 
 const submitForm = async (event : any) => {
   event.preventDefault();
 
-  if(email.value == '' || password.value == '') {
+  if(email.value == '' || password.value == '' || name.value == '') {
     errorMessage.value = 'Не заполнены необходимые поля';
     setTimeout(() => {
       errorMessage.value = '';
@@ -75,7 +80,8 @@ const submitForm = async (event : any) => {
   try {
     const response = await axios.post('/api/register', {
       email: email.value,
-      password: password.value
+      password: password.value,
+      name: name.value
     }).then((response) => {
       console.log(response);
       if(response.data.status == false){

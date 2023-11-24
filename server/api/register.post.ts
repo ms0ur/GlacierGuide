@@ -14,10 +14,12 @@ export default defineEventHandler(async (event) => {
                 user: {
                     id: user.additionalContext.user.id,
                     email: user.additionalContext.user.email,
+                    name: user.additionalContext.user.name,
                     loggedInAt: new Date()
                 },
                 id: user.additionalContext.user.id,
                 email: user.additionalContext.user.email,
+                name: user.additionalContext.user.name,
                 loggedInAt: new Date()
             })
             return user

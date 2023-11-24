@@ -107,17 +107,19 @@ export default class SuppliesService {
     }
 
 
+
 /**
  * Adds a new supply to the database.
  *
+ * @param {string} name - The name of the supply.
  * @param {number} quantity - The quantity of the supply.
- * @param {number} measurement - The measurement unit of the supply. 0-гр, 1-литры, 2-штуки, 3-др
- * @param {Date} date - The date when the supply was added.
+ * @param {number} measurement - The measurement of the supply.
+ * @param {Date} date - The date of the supply.
  * @param {Date} expiryDate - The expiry date of the supply.
  * @param {string} category - The category of the supply.
  * @param {string} type - The type of the supply.
  * @param {string} user - The user who added the supply.
- * @return {any} The result of creating the supply in the database.
+ * @returns {any} The result of adding the supply to the database.
  */
 addSupply(
     name: string,
@@ -130,6 +132,7 @@ addSupply(
     user: string
     ): any {
     try {
+        console.log("date" + expiryDate);
         const supply = {
             name: name,
             quantity: quantity,

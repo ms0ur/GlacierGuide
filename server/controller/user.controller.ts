@@ -13,7 +13,7 @@ export default class UserController {
     async register(event : any){
         const body = await readBody(event)
 
-        if (!body.email || !body.password) {
+        if (!body.email || !body.password || !body.name) {
             return {
                 status: false,
                 errorCode: 1,
@@ -41,7 +41,7 @@ export default class UserController {
 
         //hashing password
         const hashedPassword = await bcrypt.hash(body.password, 10)
-        const userDb = await User.register(body.email, hashedPassword)
+        const userDb = await User.register(body.email, hashedPassword, body.name)
         //registering new user
         if(userDb){
             return {

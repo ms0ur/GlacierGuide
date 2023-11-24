@@ -36,8 +36,11 @@
               <NuxtLink to="/register" v-auto-animate class="text-black text-sm font-medium leading-4 whitespace-nowrap justify-center items-center border max-w-full px-5 py-3.5 rounded-3xl border-solid border-black">
                 Создать аккаунт
               </NuxtLink>
-              <button v-auto-animate @click="submitForm" class="text-white text-sm font-medium leading-4 whitespace-nowrap justify-center items-center shadow-sm bg-red-400 self-end mt-5 px-5 py-3.5 rounded-3xl">
+              <button v-if="!isRequestSended" v-auto-animate @click="submitForm" class="text-white text-sm font-medium leading-4 whitespace-nowrap justify-center items-center shadow-sm bg-red-400 self-end mt-5 px-5 py-3.5 rounded-3xl">
                 Войти
+              </button>
+              <button v-else v-auto-animate disabled class="text-white text-sm font-medium leading-4 whitespace-nowrap justify-center items-center shadow-sm bg-red-300 self-end mt-5 px-5 py-3.5 rounded-3xl">
+                Загрузка...
               </button>
               <div v-auto-animate v-if="errorMessage" class="text-white bg-red-500 p-3 rounded-xl text-center mt-2">
                 {{ errorMessage }}
@@ -58,12 +61,16 @@
   const login = ref('');
   const password = ref('');
   const errorMessage = ref('');
+
+  const isRequestSended = ref(false);
   
   const submitForm = async (event : any) => {
+    isRequestSended.value = true;
     event.preventDefault();
   
     if(login.value == '' || password.value == '') {
       errorMessage.value = 'Не заполнены необходимые поля';
+      isRequestSended.value = false;
       setTimeout(() => {
         errorMessage.value = '';
       }, 5000);
@@ -77,17 +84,24 @@
       }).then((response) => {
         if(response.data.status == false){
           errorMessage.value = response.data.errorName.ru;
+          isRequestSended.value = false;
           
           setTimeout(() => {
             errorMessage.value = '';
           }, 5000);
         } else if(response.data.status == true) {
+          isRequestSended.value = false;
           window.location.href = "/";
         }
       });
       console.log(response)
   
     } catch (error) {
+      isRequestSended.value = false;
+      errorMessage.value = 'Ошибка на сервере';
+      setTimeout(() => {
+        errorMessage.value = '';
+      }, 5000);
       console.log(error);
     }
   };

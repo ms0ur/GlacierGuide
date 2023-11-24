@@ -13,7 +13,7 @@
       <NuxtLink v-auto-animate to="/" :class="{ 'bg-purple-500 text-white': $route.name === 'index' }" class="text-black transition-colors duration-500  hover:bg-purple-300 text-sm font-medium leading-4 whitespace-nowrap justify-center items-center self-stretch grow px-5 py-3.5 rounded-3xl">
         Главная
       </NuxtLink>
-      <NuxtLink v-auto-animate to="/lists" :class="{ 'bg-purple-500 text-white': $route.name === 'lists' }" class="text-black transition-colors duration-500  hover:bg-purple-300 text-sm font-medium leading-4 whitespace-nowrap justify-center items-center self-stretch grow px-5 py-3.5 rounded-3xl">Список покупок</NuxtLink>
+      <NuxtLink v-auto-animate to="/list" :class="{ 'bg-purple-500 text-white': $route.name === 'list' }" class="text-black transition-colors duration-500  hover:bg-purple-300 text-sm font-medium leading-4 whitespace-nowrap justify-center items-center self-stretch grow px-5 py-3.5 rounded-3xl">Список покупок</NuxtLink>
       <NuxtLink v-auto-animate to="/recipes" :class="{ 'bg-purple-500 text-white': $route.name === 'recipes' }" class="text-black transition-colors duration-500  hover:bg-purple-300 text-sm font-medium leading-4 whitespace-nowrap justify-center items-center self-stretch grow px-5 py-3.5 rounded-3xl">Рецепты</NuxtLink>
       <NuxtLink v-auto-animate to="/supplies" :class="{ 'bg-purple-500 text-white': $route.name === 'supplies' }" class="text-black transition-colors duration-500  hover:bg-purple-300 text-sm font-medium leading-4 whitespace-nowrap justify-center items-center self-stretch grow px-5 py-3.5 rounded-3xl">Запасы</NuxtLink>
     </nav>

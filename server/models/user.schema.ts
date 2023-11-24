@@ -2,7 +2,9 @@ import { defineMongooseModel } from '#nuxt/mongoose'
 
 interface User {
   email: string
-  password: string
+  password: string,
+  name: string,
+  createdAt: Date
 }
 
 export const UserSchema= defineMongooseModel<User>('User', {
@@ -14,4 +16,12 @@ export const UserSchema= defineMongooseModel<User>('User', {
     type: String,
     required: true,
   },
+  name: {
+    type: String,
+    required: true,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now
+  }
 })

@@ -3,7 +3,9 @@ const supplies = new SuppliesService()
 
 export default defineEventHandler(async (event) => {
     try{
+        
         const body = await readBody(event)
+        console.log(body.expiryDate)
         const session = await getUserSession(event)
         if(!session) return null
         if(!body.typel) return null

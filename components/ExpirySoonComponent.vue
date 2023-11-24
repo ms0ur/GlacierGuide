@@ -1,5 +1,5 @@
 <template>
-    <div class="shadow-sm bg-red-400 flex flex-col px-6 rounded-3xl max-md:px-5">
+    <div class="shadow-sm bg-red-300 flex flex-col px-6 rounded-3xl max-md:px-5">
       <header class="flex w-[383px] max-w-full gap-0.5 mt-6 self-start">
         <h2 class="text-white text-2xl font-semibold leading-7 grow shrink basis-auto mt-2.5">
           Срок годности скоро истечет
@@ -12,21 +12,68 @@
         />
       </header>
       <hr class="bg-zinc-50 self-stretch shrink-0 h-px mt-4 max-md:max-w-full" />
-      <div class="items-center self-stretch flex justify-between gap-4 mt-4 pr-1.5 max-md:max-w-full max-md:flex-wrap">
-        <div class="text-white text-center text-2xl font-semibold leading-7 my-auto">01</div>
-        <div class="bg-red-500 self-stretch flex w-[574px] shrink-0 h-12 flex-col rounded-3xl max-md:max-w-full"></div>
+      <div v-for="(supply , index) in supplies"  class="items-center self-stretch flex justify-between gap-4 mt-4 pr-1.5 max-md:max-w-full max-md:flex-wrap">
+        <div class="text-white text-center text-2xl font-semibold leading-7 my-auto">0{{ index+1 }}</div>
+        <div class="bg-red-400 self-center flex w-[574px] shrink-0 h-12 flex-col rounded-3xl max-md:max-w-full">
+          <div class="flex mx-3 flex-row justify-between items-end">
+                    <div class="flex flex-row items-center">
+                        <div class="flex flex-row gap-5">
+                            <div class="flex flex-col text-white">
+                                <p>{{ supply.name }}</p>
+                                <p class="text-sm text-stone-300">{{ getType(supply.type) }}</p>
+                            </div>
+                            <p class="text-white">{{ supply.quantity }} {{ getMeasurement(supply.measurement) }}</p>
+                        </div>
+                        <div class="flex flex-row text-white gap-5 ml-5">
+                            <p>Годен до: {{ supply.expiryDate }}</p>
+                        </div>
+                    </div>
+                </div>
+        </div>
       </div>
-      <div class="items-center self-stretch flex justify-between gap-4 mt-2 pr-1.5 max-md:max-w-full max-md:flex-wrap">
-        <div class="text-white text-center text-2xl font-semibold leading-7 my-auto">02</div>
-        <div class="bg-red-500 self-stretch flex w-[574px] shrink-0 h-12 flex-col rounded-3xl max-md:max-w-full"></div>
-      </div>
-      <div class="items-center self-stretch flex justify-between gap-4 mt-2 pr-1.5 max-md:max-w-full max-md:flex-wrap">
-        <div class="text-white text-center text-2xl font-semibold leading-7 my-auto">03</div>
-        <div class="bg-red-500 self-stretch flex w-[574px] shrink-0 h-12 flex-col rounded-3xl max-md:max-w-full"></div>
-      </div>
-      <div class="items-center self-stretch flex justify-between gap-4 mt-2 mb-16 pr-1.5 max-md:max-w-full max-md:flex-wrap max-md:mb-10">
-        <div class="text-white text-center text-2xl font-semibold leading-7 my-auto">04</div>
-        <div class="bg-red-500 self-stretch flex w-[574px] shrink-0 h-12 flex-col rounded-3xl max-md:max-w-full"></div>
-      </div>
+      
     </div>
   </template>
+
+<script setup lang="ts">
+import axios from 'axios';
+const dayjs = useDayjs()
+dayjs.locale('ru')
+
+let supplies = ref<any[]>([]);
+
+console.log('loading')
+axios.get('/api/supplies/supplies??option=4&limit=4').then((response) => {
+
+  supplies.value = response.data
+  supplies.value.forEach((supply: any) => {
+    supply.date = getNiceDateFormat(supply.date)
+    supply.expiryDate = getNiceDateFormat(supply.expiryDate)
+  })
+  console.log(supplies.value)
+  
+}).catch((error) => {
+  console.log(error)
+})
+
+const getType = (id: number) => {
+    axios.get('/api/supplies/types?option=2&id='+ id).then((response) => {
+        return response.data.name
+    }).catch((error) => {
+        console.log(error)
+    })
+  }
+
+const getMeasurement = (num: number) => {
+  switch (num) {
+    case 0: return 'гр.';
+    case 1: return 'л.';
+    case 2: return 'шт.';
+    default: return '';
+  }
+}
+
+const getNiceDateFormat = (date: Date) => {
+  return dayjs(date).format('DD.MM.YYYY')
+}
+</script>

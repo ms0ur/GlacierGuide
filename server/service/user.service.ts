@@ -8,13 +8,15 @@ export default class UserService {
      *
      * @param {string} email - The email of the user.
      * @param {string} password - The hashed password of the user.
+     * @param {string} name - The name of the user.
      * @return {Promise<UserSchema | null>} - True if the user was registered successfully, or null if an error occurred.
      */
-    async register(email : string, password : string): Promise<any> {
+    async register(email : string, password : string, name : string): Promise<any> {
         try {
             const user = await new UserSchema ({
                 email: email,
-                password: password
+                password: password,
+                name: name
             }).save()
 
             return user;

@@ -53,7 +53,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import axios from 'axios';
-const colorMode = useColorMode()
 
 const login = ref('');
 const password = ref('');

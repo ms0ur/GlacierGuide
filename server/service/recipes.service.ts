@@ -14,6 +14,25 @@ export class RecipesService {
         }
     }
 
+    addNewProductToRecipe(recipeId: string, ingridientId: string){
+        try {
+            const result = RecipesSchema.findByIdAndUpdate(recipeId, {$push: {ingredients: ingridientId}})
+            return result
+        } catch (error) {
+            console.log(error)
+            return null
+        }
+    }
+    removeProductFromRecipe(recipeId: string, ingridientId: string){
+        try {
+            const result = RecipesSchema.findByIdAndUpdate(recipeId, {$pull: {ingredients: ingridientId}})
+            return result
+        } catch (error) {
+            console.log(error)
+            return null
+        }
+    }
+
     getRecipeById(id: string): any{
         try {
             const result = RecipesSchema.findById(id)
@@ -34,6 +53,16 @@ export class RecipesService {
         }
     }
 
+    getPublicRecipes(limit: number): any{
+        try {
+            const result = RecipesSchema.find({public: true}).limit(limit || 10)
+            return result
+        } catch (error) {
+            console.log(error)
+            return null
+        }
+    }
+
     getRecipesByUser(userId: string, limit: number): any{
         try {
             const result = RecipesSchema.find({user: userId}).limit(limit || 10)
@@ -44,9 +73,29 @@ export class RecipesService {
         }
     }
 
+    getPublicRecipesByUser(userId: string, limit: number): any{
+        try {
+            const result = RecipesSchema.find({user: userId, public: true}).limit(limit || 10)
+            return result
+        } catch (error) {
+            console.log(error)
+            return null
+        }
+    }
+
     getRecipesByName(name: string, limit: number): any{
         try {
             const result = RecipesSchema.find({name: new RegExp(name, 'i')}).limit(limit || 10)
+            return result
+        } catch (error) {
+            console.log(error)
+            return null
+        }
+    }
+
+    getPublicRecipesByName(name: string, limit: number): any{
+        try {
+            const result = RecipesSchema.find({name: new RegExp(name, 'i'), public: true}).limit(limit || 10)
             return result
         } catch (error) {
             console.log(error)
