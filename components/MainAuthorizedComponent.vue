@@ -45,7 +45,7 @@
 
 
   .bgImage{
-    background-image: url('@/svgs/mountain.svg');
+    background-image: url('@/public/mountain.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;

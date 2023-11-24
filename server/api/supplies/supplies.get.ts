@@ -35,7 +35,7 @@ export default defineEventHandler(async (event) => {
             const userId = eval('session.user.id')
             if (!userId) return null
             const limit = Number(query.limit || 10)
-            const result = await supplies.getSortedSuppliesByExpiryDate(userId, limit, true)
+            const result = await supplies.getSortedSuppliesByExpiryDate(userId, limit, false)
             return result
         }
     } catch (error) {
